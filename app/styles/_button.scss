@@ -1,0 +1,31 @@
+@use "../styles/variables";
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.8rem 1.35rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-weight: 700;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    color 180ms ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.button-primary {
+  background: linear-gradient(135deg, variables.$cyan, variables.$green);
+  color: #031018;
+}
+
+.button-secondary {
+  border-color: variables.$cyan-deep;
+  background: variables.$bg-soft;
+}

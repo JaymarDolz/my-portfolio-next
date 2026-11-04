@@ -1,0 +1,232 @@
+@use "../styles/variables";
+@use "../styles/animation";
+
+.layout {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: none;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: transparent;
+}
+
+.header {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  padding: 15vh 1rem 0;
+  text-align: center;
+
+  & h1 {
+    color: #66fcf2;
+    font-family: "HvDTrial Brandon Grotesque", "Brandon Grotesque", sans-serif;
+    font-size: clamp(2rem, 1.2718rem + 3.1068vw, 5rem);
+    font-weight: 900;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+}
+
+.stage {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  min-height: 100vh;
+  pointer-events: none;
+}
+
+.main-art {
+  position: absolute;
+  top: 40vh;
+  left: 50%;
+  width: auto;
+  height: 40vh;
+  z-index: 3;
+  object-fit: contain;
+  transform: translateX(-50%);
+}
+
+.floating-card {
+  position: absolute;
+  width: auto;
+  border-radius: 0.75rem;
+  z-index: 2;
+  filter: drop-shadow(0 1rem 2rem rgba(0, 0, 0, 0.45));
+  animation: works-float 4s ease-in-out infinite;
+
+  &.a {
+    right: 55vw;
+    bottom: 35vh;
+    height: 30vh;
+  }
+
+  &.b {
+    bottom: 30vh;
+    left: 58vw;
+    height: 25vh;
+    animation-delay: -2s;
+  }
+}
+
+.typewriter {
+  position: absolute;
+  bottom: 60vh;
+  left: 50vw;
+  display: inline-block;
+  padding: 1rem 2rem;
+  border: 3px solid #61efff;
+  border-radius: 10px;
+  background: hsla(210, 25%, 2%, 0.72);
+  box-shadow: 0 0 2rem rgba(25, 224, 255, 0.3);
+  animation: works-float 4s ease-in-out infinite;
+
+  & p {
+    width: 0;
+    margin: 0;
+    overflow: hidden;
+    border-right: 2px solid white;
+    color: white;
+    font-family: monospace;
+    font-size: clamp(1.2rem, 0.6359rem + 1.5534vw, 2.5rem);
+    white-space: nowrap;
+    animation:
+      works-typing 6s steps(12) infinite,
+      works-cursor 0.4s step-end infinite alternate;
+  }
+}
+
+// background
+
+.glow {
+  position: absolute;
+  z-index: 1;
+  background: url("/portfolio/images/overlay-glow.png") center / cover no-repeat;
+  pointer-events: none;
+  filter: blur(7vw);
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #19e0ff;
+  }
+
+  &.a {
+    bottom: 30vh;
+    left: 30vw;
+    width: 40vw;
+    height: 40vh;
+    opacity: 0.18;
+    mix-blend-mode: screen;
+  }
+
+  &.b {
+    bottom: 20vh;
+    left: 35vw;
+    width: 30vw;
+    height: 30vh;
+    opacity: 0.25;
+    mix-blend-mode: hard-light;
+  }
+}
+
+.edge-overlay {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+
+  &.top {
+    top: 0;
+    background: linear-gradient(
+      0deg,
+      rgba(5, 9, 14, 0) 0%,
+      rgba(5, 9, 14, 0) 80%,
+      rgba(5, 9, 14, 1) 95%,
+      rgba(5, 9, 14, 1) 100%
+    );
+  }
+
+  &.bottom {
+    bottom: 0;
+    background: linear-gradient(
+      to top,
+      #04080b 0%,
+      #04080bf1 10%,
+      rgba(4, 8, 11, 0) 24%
+    );
+  }
+}
+
+@media (max-width: 700px) {
+  .layout,
+  .stage {
+    min-height: 100svh;
+  }
+
+  .header {
+    padding-top: 25svh;
+
+    & h1 {
+      font-size: clamp(2.1rem, 9vw, 3.5rem);
+    }
+  }
+
+  .main-art {
+    top: 50svh;
+    height: 34svh;
+    max-width: 90vw;
+  }
+
+  .floating-card {
+    border-radius: 0.45rem;
+
+    &.a {
+      right: auto;
+      left: 5vw;
+      top: 50svh;
+      height: 20svh;
+    }
+
+    &.b {
+      right: 4vw;
+      top: 47svh;
+      left: auto;
+      height: 17svh;
+    }
+  }
+
+  .typewriter {
+    bottom: 50svh;
+    left: 50%;
+    padding: 0.65rem 1rem;
+    border-width: 2px;
+    transform: translateX(-50%);
+
+    & p {
+      font-size: 1rem;
+    }
+  }
+
+  .glow {
+    &.a {
+      bottom: 15svh;
+      left: 15vw;
+      width: 70vw;
+    }
+
+    &.b {
+      bottom: 10svh;
+      left: 20vw;
+      width: 60vw;
+    }
+  }
+}

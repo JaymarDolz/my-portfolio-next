@@ -1,0 +1,136 @@
+@use "../styles/variables";
+@use "../styles/animation";
+
+.portfolio-page {
+  overflow: visible;
+  overflow-x: clip;
+}
+
+.layer-one {
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background: variables.$bg;
+  z-index: 0;
+}
+
+.layer-two {
+  position: relative;
+  top: -100vh;
+  z-index: 2;
+  min-height: 100vh;
+}
+
+.layer-three {
+  position: relative;
+  top: -100vh;
+  height: 250vh;
+  z-index: 3;
+}
+
+.layer-three-wrapper {
+  position: sticky;
+  top: 0vh;
+  height: 100vh;
+}
+
+.layer-four {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+
+.layer-five,
+.layer-six {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+
+.works-parallax {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.layer-fourfivesix {
+  position: relative;
+  top: -200vh;
+  z-index: 4;
+  // overflow: hidden;
+
+  background: variables.$bg;
+}
+
+.layer-four,
+.layer-five,
+.layer-six {
+  min-height: 100vh;
+}
+
+.layer-seven {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  height: 100vh;
+  min-height: 100vh;
+  background: transparent;
+}
+
+h2 {
+  margin: 0;
+  font-size: clamp(3rem, 7vw, 6.25rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+// general button layout
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+// works parallax
+.works-bg-slider {
+  position: absolute;
+  right: 0;
+  width: 100vw;
+  pointer-events: none;
+  background-position: center top;
+  background-size: contain;
+  background-repeat: repeat-y;
+  animation: works-parallax-scroll linear infinite;
+}
+
+.works-bg-slider-small {
+  z-index: 1;
+  top: 0;
+  height: 500vh;
+  filter: blur(5px);
+  background-image: url("/portfolio/images/parallaxbg1.png");
+  animation-duration: 100s;
+}
+
+.works-bg-slider-small-b {
+  top: 500vh;
+}
+
+.works-bg-slider-large {
+  z-index: 0;
+  top: 0;
+  height: 450vh;
+  opacity: 0.4;
+  filter: blur(10px);
+  background-image: url("/portfolio/images/parallaxbg2.png");
+  animation-duration: 200s;
+}
+
+.works-bg-slider-large-b {
+  top: 450vh;
+}

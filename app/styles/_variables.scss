@@ -1,0 +1,24 @@
+$background: #ffffff;
+$foreground: #171717;
+$bg: #04080b;
+$bg-soft: #0b1420;
+$panel: rgba(9, 22, 34, 0.72);
+$panel-strong: rgba(12, 33, 47, 0.92);
+$line: rgba(102, 252, 241, 0.18);
+$muted: #a6b7c9;
+$cyan: #66fcf1;
+$cyan-deep: #45a29e;
+$green: #43dca1;
+$shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+$max-width: 1180px;
+
+$font-display:
+  var(--font-brandon-grotesque), "Avenir Next", Montserrat, Arial, sans-serif;
+$font-body: var(--font-varela-round), Arial, sans-serif;
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}

@@ -1,0 +1,273 @@
+@use "../styles/variables";
+@use "../styles/animation";
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding-inline: max(1rem, calc((100% - var(--max-width)) / 2));
+  overflow: hidden;
+  min-height: 100vh;
+  isolation: isolate;
+  background:
+    linear-gradient(
+      0deg,
+      rgba(4, 10, 13, 0) 0%,
+      rgba(4, 10, 13, 0.5) 15%,
+      #040a0d 42%,
+      #040a0d 100%
+    ),
+    url("/portfolio/images/techstackbg.webp") center / cover;
+
+  &::before {
+    display: none;
+  }
+}
+
+.textoverlay {
+  position: absolute;
+  inset: 0 auto auto 0;
+  z-index: 0;
+  width: max-content;
+  height: 100vh;
+  margin: 0;
+  color: variables.$cyan;
+  font-family: variables.$font-display;
+  font-size: clamp(4rem, 2.05rem + 8.3vw, 12rem);
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  line-height: 0.82;
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+  overflow: hidden;
+  padding-top: 7vh;
+  transform: translateX(-5%);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.heading {
+  margin: 2rem 0 2rem;
+  position: relative;
+  z-index: 1;
+  color: variables.$cyan;
+  text-align: center;
+
+  h2 {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: clamp(2.7rem, 5.6vw, 5.5rem);
+    font-weight: 800;
+    line-height: 0.92;
+    letter-spacing: 0.01em;
+  }
+}
+
+.marquee {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  width: min(70vw, 72rem);
+  margin: 2rem auto 2rem;
+  padding: 1rem 0;
+  border-block: 1px solid rgba(102, 252, 241, 0.18);
+  mask: linear-gradient(
+    90deg,
+    transparent,
+    #ffffff 18%,
+    #ffffff 82%,
+    transparent
+  );
+
+  // fade on sides
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 8rem;
+    z-index: 2;
+  }
+
+  &::before {
+    left: 0;
+    background: linear-gradient(90deg, #07111c, transparent);
+  }
+
+  &::after {
+    right: 0;
+    background: linear-gradient(270deg, #07111c, transparent);
+  }
+}
+
+.scroller {
+  display: flex;
+  align-items: stretch;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.techitem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  min-width: 8rem;
+  margin-right: 1rem;
+  padding: 0.8rem 1rem;
+  font-size: clamp(0.95rem, 1.2vw, 1.2rem);
+  text-align: center;
+  text-shadow: 0 5px 12px rgba(0, 0, 0, 0.75);
+  white-space: nowrap;
+
+  img {
+    width: clamp(3rem, 5vw, 4.5rem);
+    height: clamp(3rem, 5vw, 4.5rem);
+    object-fit: contain;
+    filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.55));
+  }
+}
+
+.credentials {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 52rem);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  text-align: center;
+
+  h3 {
+    font-family: variables.$font-body;
+    margin-bottom: 0.8rem;
+    font-size: 2rem;
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+
+  span {
+    color: variables.$cyan;
+  }
+
+  p {
+    width: min(100%, 44rem);
+    margin: 0 auto 1.7rem;
+    line-height: 1.75;
+
+    a,
+    span {
+      color: #c5fffc;
+    }
+
+    a {
+      text-decoration: underline;
+      text-decoration-color: rgba(102, 252, 241, 0.45);
+      text-underline-offset: 0.2em;
+    }
+  }
+}
+
+.button {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border: 3px solid variables.$cyan;
+  border-radius: 0;
+  background: transparent;
+  color: variables.$cyan;
+  font-size: 0.95rem;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -2.5rem;
+    z-index: -1;
+    width: 0;
+    height: 100%;
+    background: #61efff;
+    transform: skewX(45deg);
+    transition: width 500ms ease;
+  }
+
+  &:hover {
+    color: #040a0d;
+  }
+
+  &:hover::before {
+    width: 160%;
+  }
+}
+
+@media (max-width: 700px) {
+  .layout {
+    min-height: 100svh;
+    padding: 6rem 1rem 3rem;
+    background-size: auto, 240% auto;
+    background-position: center, center bottom;
+  }
+
+  .textoverlay {
+    height: 100%;
+    padding-top: 5.5rem;
+    font-size: clamp(3.5rem, 18vw, 7rem);
+    transform: translateX(-12%);
+  }
+
+  .heading {
+    margin: 0 0 1.5rem;
+
+    h2 {
+      font-size: clamp(2.4rem, 10vw, 4rem);
+    }
+  }
+
+  .marquee {
+    width: 100%;
+    margin: 1rem auto 2rem;
+    padding: 0.65rem 0;
+
+    &::before,
+    &::after {
+      width: 2rem;
+    }
+  }
+
+  .techitem {
+    min-width: 6.5rem;
+    gap: 0.6rem;
+    margin-right: 0.35rem;
+    padding: 0.7rem 0.55rem;
+    font-size: 0.82rem;
+
+    img {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+
+  .credentials {
+    padding: 0 0.25rem;
+
+    h3 {
+      font-size: 1.6rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+  }
+
+  .button {
+    min-height: 2.9rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.78rem;
+  }
+}

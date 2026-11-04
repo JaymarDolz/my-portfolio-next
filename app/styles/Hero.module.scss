@@ -1,0 +1,230 @@
+@use "../styles/variables";
+@use "../styles/animation";
+
+.layout {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+
+  justify-content: space-between;
+  gap: clamp(2rem, 6vw, 5rem);
+  padding-inline: 8vw;
+  background: url("/portfolio/images/herobg.webp") center / cover no-repeat;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.82) 0%,
+      rgba(0, 0, 0, 0.5) 25%,
+      rgba(0, 0, 0, 0.15) 55%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(
+        circle at 74% 45%,
+        rgba(102, 252, 241, 0.2),
+        transparent 48%
+      ),
+      url("/portfolio/images/overlay-glow.png") 74% center / 55vw 100% no-repeat;
+    mix-blend-mode: overlay;
+    filter: blur(5vw);
+    pointer-events: none;
+  }
+}
+
+.content {
+  z-index: 1;
+  flex: 1 1 0;
+  min-width: 0;
+  align-self: center;
+
+  .eyebrow {
+    font-size: clamp(1.15rem, 2.2vw, 2rem);
+    line-height: 1;
+    margin: 0 0 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: variables.$cyan;
+  }
+
+  h2 {
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+  }
+}
+
+.role {
+  --role-line-height: 3.2rem;
+
+  position: relative;
+  height: var(--role-line-height);
+  margin: 1rem 0 1.5rem;
+  overflow: hidden;
+
+  .track {
+    display: flex;
+    flex-direction: column;
+    animation: role-track-cycle 8s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+  }
+
+  .line {
+    display: flex;
+    align-items: center;
+    height: var(--role-line-height);
+    color: white;
+    font-size: clamp(1.1rem, 2vw, 1.75rem);
+    font-weight: 700;
+  }
+}
+
+.summary {
+  max-width: 40rem;
+  margin: 0 0 2rem;
+  color: variables.$muted;
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.8;
+}
+
+.visual {
+  position: relative;
+  z-index: 1;
+  flex: 0.95 1 20rem;
+  display: flex;
+  align-self: end;
+
+  justify-content: center;
+
+  img {
+    position: relative;
+    z-index: 1;
+    max-height: 85vh;
+    object-fit: contain;
+  }
+}
+
+.picture {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+.image {
+  width: auto;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    gap: 2rem;
+    padding-inline: 6vw;
+  }
+
+  .visual {
+    flex-basis: 16rem;
+
+    img {
+      max-height: 70vh;
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .layout {
+    min-height: 100svh;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0;
+    padding: 7rem 1.25rem 2rem;
+    background-position: 62% center;
+
+    &::before {
+      background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.96) 0%,
+        rgba(0, 0, 0, 0.8) 38%,
+        rgba(0, 0, 0, 0.25) 76%,
+        rgba(0, 0, 0, 0.12) 100%
+      );
+    }
+
+    &::after {
+      background-position: 68% center;
+      background-size: 100vw 70%;
+      filter: blur(9vw);
+    }
+  }
+
+  .content {
+    position: relative;
+    z-index: 2;
+    flex: 0 0 auto;
+    width: 100%;
+    order: 2;
+
+    h2 {
+      font-size: clamp(2.5rem, 12vw, 4.4rem);
+    }
+  }
+
+  .visual {
+    position: relative;
+    inset: auto;
+    flex: 0 0 34svh;
+    height: 34svh;
+    order: 1;
+    align-self: stretch;
+    justify-content: center;
+    pointer-events: none;
+    margin-bottom: 0.5rem;
+
+    .picture {
+      width: min(100%, 28rem);
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      max-height: none;
+      object-fit: contain;
+      object-position: center;
+    }
+  }
+
+  .role {
+    --role-line-height: 2.6rem;
+    margin: 0.75rem 0 1rem;
+  }
+
+  .summary {
+    max-width: 34rem;
+    margin-bottom: 1.4rem;
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+
+}
+
+@media (max-width: 380px) {
+  .layout {
+    padding-inline: 1rem;
+  }
+
+  .visual {
+    flex-basis: 31svh;
+    height: 31svh;
+  }
+}
