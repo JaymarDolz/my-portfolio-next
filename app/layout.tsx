@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Varela_Round } from "next/font/google";
 import localFont from "next/font/local";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.scss";
 
 const brandonGrotesque = localFont({
@@ -30,7 +31,10 @@ export default function RootLayout({
       lang="en"
       className={`${varelaRound.variable} ${brandonGrotesque.variable} h-full antialiased`}
     >
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
